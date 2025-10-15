@@ -15,5 +15,5 @@ new() ->
 
     %% return the clamped 32 bytes as a curve 25519 compatible and
     %% hopefully secure key
-    <<ReplaceFirst:8, Middle:240/bitstring, Last:8>>.
+    <<ReplaceFirst:8, Middle:240/bitstring, ReplaceLast:8>>.
 
