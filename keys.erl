@@ -1,5 +1,7 @@
 -module(keys).
--export([new/0]).
+-export([new/0, public/1]).
+
+-import(crypto_power, [pow/3]).
 
 %% generate 32 random bytes
 %% and then apply the curve25519 "clamp"
@@ -17,3 +19,7 @@ new() ->
     %% hopefully secure key
     <<ReplaceFirst:8, Middle:240/bitstring, ReplaceLast:8>>.
 
+public(Private) ->
+    P = trunc(math:pow(2, 255)) - 19,
+    G = 9,
+    crypto_power:pow(G, Private, P).
